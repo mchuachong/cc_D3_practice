@@ -2,6 +2,7 @@
 import './App.css'
 import Bar from './Bar.jsx'
 import Scatter from './Scatter.jsx'
+import Heat from "./Heat.jsx"
 
 const App = () => {
   return <>
@@ -12,6 +13,9 @@ const App = () => {
   <hr></hr>
   <h2>Fastest Cycling Times (Alpe d'Huez)</h2>
   <Scatter/>
+  <hr></hr>
+  <h2>Monthly Global Temperature</h2>
+  <Heat/>
   <hr></hr>
   </>
 }

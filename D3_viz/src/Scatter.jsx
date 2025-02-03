@@ -55,8 +55,8 @@ useEffect(()=>{
 })
 
 
-    return (<>
-    <svg className="graph" width = {450} height = {400} id = "Scatter" ref = {ref}/></>
+    return (
+    <svg className="graph" width = {450} height = {400} id = "Scatter" ref = {ref}/>
 )
 }
 

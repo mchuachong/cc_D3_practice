@@ -8,3 +8,25 @@
 .graph{
   background-color: rgb(53, 53, 53);
 }
+
+/* /* tooltip{
+  pointer-events: all;
+  fill-opacity:0;
+  stroke-opacity: 0;
+  z-index: 1;
+} */
+
+.tooltip{
+  position:absolute;
+  background-color: rgba(255, 166, 0, 0.568);
+  color:white;
+  border:1px solid white;
+  border-radius: 2px;
+  opacity: .75;
+  z-index: 99;
+  padding:3px;
+} 
+
+.bar:hover {
+  fill:rgba(158, 115, 6, 0.578)
+}

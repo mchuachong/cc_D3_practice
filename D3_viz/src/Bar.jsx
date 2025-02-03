@@ -1,6 +1,8 @@
 import * as d3 from "d3"
 import { useState , useRef, useEffect } from "react"
 const DataUrl = "https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/master/GDP-data.json"
+
+
 const Bar = () => {
 
     const ref = useRef()
@@ -8,6 +10,11 @@ useEffect(()=>{
     const margin = { top: 30, right: 30, bottom: 70, left: 60 },
       width = 460 - margin.left - margin.right,
       height = 400 - margin.top - margin.bottom;
+
+    // const tooltip = d3
+    //     .select("body")
+    //     .append("div")
+    //     .attr("class")
 
     const svg = d3
         .select(ref.current)
@@ -40,7 +47,7 @@ useEffect(()=>{
             .attr("transform","translate(-10,0)rotate(-45)")
             .style("text-anchor","end")
            
-            svg
+        svg
             .selectAll("mybar")
             .data(e.data)
             .join("rect")
@@ -48,13 +55,52 @@ useEffect(()=>{
             .attr("y", (d) => y(d[1]))
             .attr("width", x.bandwidth())
             .attr("height", (d) => height - y(d[1]))
-            .attr("fill", "orange");
+            .attr("fill", "orange")
+            .attr("class","bar")
 
+       const tooltip =  d3.select("#tooltip")
+        
+       const onMouseEnter = (event,data) => {
+        const [px,py] = d3.pointer(event)
+        tooltip.select("#tooltipName")
+            .text(`$${String(data[1]).slice(0,-5)},${String(data[1]).slice(-5)} Billion`)
+        tooltip.select("#tooltipVal")
+            .text(data[0])
+        tooltip.style(`left`,`${px}px`)
+        tooltip.style(`top`,`${py+150}px`)
+        tooltip.style("opacity",1)
+      
+      
     }
-    )})
-    return (
+    
+    const onMouseLeave = (event,data) => {
+        tooltip.style("opacity",0)
+    }
+    
+    
+        d3.selectAll("rect")
+            .on("mouseenter",onMouseEnter)
+            .on("mouseleave",onMouseLeave)
+
+  
+
+
+    })
+    
+
+
+    })
+    return (     <>
+           <div id="tooltip" className="tooltip">
+                <div className="tooltipBox">
+                    <span id="tooltipName"></span>
+                </div>
+            <div className="tooltipText">
+                    <span id="tooltipVal"></span>
+                </div>
+            </div>
         <svg className="graph" width = {450} height = {400} id="Bar" ref = {ref}/>
-    )
+        </>)
 }
 
 export default Bar
