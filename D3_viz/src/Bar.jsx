@@ -50,11 +50,10 @@ useEffect(()=>{
             .attr("height", (d) => height - y(d[1]))
             .attr("fill", "orange");
 
-            console.log(e.data.map(e=>e[0]))
     }
     )})
     return (
-        <svg width = {450} height = {400} id="Bar" ref = {ref}/>
+        <svg className="graph" width = {450} height = {400} id="Bar" ref = {ref}/>
     )
 }
 
