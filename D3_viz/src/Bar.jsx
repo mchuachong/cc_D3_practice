@@ -8,7 +8,7 @@ const Bar = () => {
     const ref = useRef()
 useEffect(()=>{
     const margin = { top: 30, right: 30, bottom: 70, left: 60 },
-      width = 460 - margin.left - margin.right,
+      width = 550 - margin.left - margin.right,
       height = 400 - margin.top - margin.bottom;
 
     // const tooltip = d3
@@ -59,15 +59,18 @@ useEffect(()=>{
             .attr("class","bar")
 
        const tooltip =  d3.select("#tooltip")
-        
+    
+        const vH = document.documentElement.clientHeight;
+        const vW = document.documentElement.clientWidth;
+
        const onMouseEnter = (event,data) => {
         const [px,py] = d3.pointer(event)
         tooltip.select("#tooltipName")
             .text(`$${String(data[1]).slice(0,-5)},${String(data[1]).slice(-5)} Billion`)
         tooltip.select("#tooltipVal")
             .text(data[0])
-        tooltip.style(`left`,`${px}px`)
-        tooltip.style(`top`,`${py+150}px`)
+        tooltip.style(`left`,`${px+160}px`)
+        tooltip.style(`top`,`${py-20}px`)
         tooltip.style("opacity",1)
       
       
@@ -90,7 +93,7 @@ useEffect(()=>{
 
 
     })
-    return (     <>
+    return (     <><div class="xdiv">
            <div id="tooltip" className="tooltip">
                 <div className="tooltipBox">
                     <span id="tooltipName"></span>
@@ -98,8 +101,8 @@ useEffect(()=>{
             <div className="tooltipText">
                     <span id="tooltipVal"></span>
                 </div>
-            </div>
-        <svg className="graph" width = {450} height = {400} id="Bar" ref = {ref}/>
+            </div></div>
+        <svg className="graph" width = {550} height = {400} id="Bar" ref = {ref}/>
         </>)
 }
 
